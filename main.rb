@@ -26,4 +26,9 @@ class Person
     @age=value
   end
 
+  private
+  def is_of_age?
+    @age>=18
+  end
+
 end
