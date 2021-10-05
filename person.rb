@@ -16,8 +16,8 @@ class Person
   end
 
   def validate_name
-    corrector=Corrector.new()
-    @name=corrector.correct_name(@name)
+    corrector = Corrector.new
+    @name = corrector.correct_name(@name)
   end
 
   private
