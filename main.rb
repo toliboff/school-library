@@ -1,6 +1,5 @@
 require_relative 'book'
 require_relative 'classroom'
-# require_relative 'person'
 require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
@@ -22,19 +21,20 @@ def start_app
     choice = show_menu()
   end
 
-  if choice==1
+  case choice
+  when 1
     list_all_books()
-  elsif choice==2
-    list_all_people
-  elsif choice == 3 
+  when 2
+    list_all_people()
+  when 3 
     create_person() 
-  elsif choice == 4 
+  when 4 
     create_book()  
-  elsif choice == 5 
+  when 5 
     create_rental()
-  elsif choice == 6 
+  when 6 
     list_rentals()
-  elsif choice == 7 
+  when 7 
     puts 'Thank you for using this app!'
   end  
 end
