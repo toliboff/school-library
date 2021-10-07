@@ -35,7 +35,7 @@ def start_app
   elsif choice == 6 
     list_rentals()
   elsif choice == 7 
-    puts 7
+    puts 'Thank you for using this app!'
   end  
 end
 
