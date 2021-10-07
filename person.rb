@@ -5,7 +5,7 @@ class Person
   attr_reader :id, :rentals
 
   def initialize(age:, name: 'Unknown', parent_permission: true)
-    @id = Time.now.to_f
+    @id = Time.now.to_i
     @name = name
     @age = age
     @parent_permission = parent_permission

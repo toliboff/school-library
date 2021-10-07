@@ -16,7 +16,6 @@ class Library
   
   end
 
-
 def start_app
   choice = show_menu()
   while choice < 1 || choice > 7
@@ -26,9 +25,9 @@ def start_app
   if choice==1
     list_all_books()
   elsif choice==2
-    puts 2
+    list_all_people
   elsif choice == 3 
-    puts 3
+    create_person() 
   elsif choice == 4 
     create_book()  
   elsif choice == 5 
@@ -59,6 +58,44 @@ end
 def list_all_books
   @books.each do |book| puts "Title: '#{book.title}', Author: #{book.author}" end
   start_app()
+end
+
+def list_all_people
+  @persons.each do |person| puts "[Classname] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}" end
+  start_app()
+end
+
+def create_person
+   print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
+    person_type = 0
+
+    while person_type!='2' && person_type!='1'
+      person_type = gets.chomp
+    end
+
+    if person_type == '1'
+      print 'Age: '
+      age = gets.chomp
+      print 'Name: '
+      name = gets.chomp
+      print 'Has parent permission? [Y/N]: '
+      permission = gets.chomp=='n'? false : true
+
+      @persons.push(Student.new(age, name, permission))
+
+    elsif person_type=='2'
+      print 'Age: '
+      age = gets.chomp
+      print 'Name: '
+      name = gets.chomp
+      print 'Specialization: '
+      specialization = gets.chomp
+
+      @persons.push(Teacher.new(age, name, specialization))
+  end
+    puts 'Person created successfully'
+    puts
+    start_app()
 end
 
 def create_book
