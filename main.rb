@@ -33,7 +33,7 @@ def start_app
   elsif choice == 5 
     create_rental()
   elsif choice == 6 
-    puts 6
+    list_rentals()
   elsif choice == 7 
     puts 7
   end  
@@ -49,7 +49,7 @@ def show_menu
     '6 - List all rentals for a given person id',
     '7 - exit'
   ]
-  
+  puts
   puts 'Please choose an option by entering a number: '
   puts options
   gets.chomp.to_i
@@ -61,7 +61,16 @@ def list_all_books
 end
 
 def list_all_people
-  @persons.each do |person| puts "[Classname] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}" end
+  @persons.each do |person| puts "[#{person.class.name.split('::').last}] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}" end
+  start_app()
+end
+
+def list_rentals
+  print 'ID of person: '
+  id = gets.chomp.to_i
+  puts 'Rentals:'
+  selected = @rentals.select{|rent| rent.person.id==id}
+  selected.each do |s| puts "Date: '#{s.date}', Book: #{s.book.title} , by: #{s.book.author}" end
   start_app()
 end
 
@@ -113,11 +122,11 @@ end
 def create_rental
   puts 'Select a book from the following list by number'
   
-  @books.each do |book, index| puts "#{index}) Title: '#{book.title}', Author: #{book.author}" end
+  @books.each_with_index do |book, index| puts "#{index}) Title: '#{book.title}', Author: #{book.author}" end
   selected_book = gets.chomp.to_i
   book=@books[selected_book]
 
-  @persons.each do |person, index| puts "#{index}) [Classname] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}" end
+  @persons.each_with_index do |person, index| puts "#{index}) [Classname] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}" end
   selected_person = gets.chomp.to_i
   person=@persons[selected_person]
 
