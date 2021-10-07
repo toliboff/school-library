@@ -31,7 +31,7 @@ def start_app
   elsif choice == 4 
     create_book()  
   elsif choice == 5 
-    puts 5
+    create_rental()
   elsif choice == 6 
     puts 6
   elsif choice == 7 
@@ -46,7 +46,7 @@ def show_menu
     '3 - Create a person',
     '4 - Create a book',
     '5 - Create a rental',
-    '6 - List all rentals for a given id',
+    '6 - List all rentals for a given person id',
     '7 - exit'
   ]
   
@@ -106,6 +106,26 @@ def create_book
 
   @books.push(Book.new(title, author))
   puts 'Book created successfully'
+  puts 
+  start_app()
+end
+
+def create_rental
+  puts 'Select a book from the following list by number'
+  
+  @books.each do |book, index| puts "#{index}) Title: '#{book.title}', Author: #{book.author}" end
+  selected_book = gets.chomp.to_i
+  book=@books[selected_book]
+
+  @persons.each do |person, index| puts "#{index}) [Classname] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}" end
+  selected_person = gets.chomp.to_i
+  person=@persons[selected_person]
+
+  print 'Date: '
+  date = gets.chomp
+ 
+  @rentals.push(Rental.new(date, person, book))
+  puts 'Rental created successfully'
   puts 
   start_app()
 end
