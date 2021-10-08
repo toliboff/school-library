@@ -135,7 +135,7 @@ class Library
     book = @books[selected_book]
 
     @persons.each_with_index do |person, index|
-      puts "#{index}) [Classname] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}"
+      puts "#{index}) [#{person.class.name.split('::').last}] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}"
     end
     selected_person = gets.chomp.to_i
     person = @persons[selected_person]
