@@ -1,8 +1,4 @@
-require_relative 'book'
 require_relative 'classroom'
-require_relative 'rental'
-require_relative 'student'
-require_relative 'teacher'
 require_relative 'actions'
 
 class Library
@@ -50,18 +46,17 @@ class Library
       '6 - List all rentals for a given person id',
       '7 - exit'
     ]
-    puts
-    puts 'Please choose an option by entering a number: '
-    puts options
+
+    puts 'Please choose an option by entering a number: ', options
     gets.chomp.to_i
   end
 end
+
 def main
   puts 'Welcome to School Library App!'
-  puts
+  
   library = Library.new
   library.start_app
 end
 
 main
-
