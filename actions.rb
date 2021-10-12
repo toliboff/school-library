@@ -1,3 +1,8 @@
+require_relative 'book'
+require_relative 'rental'
+require_relative 'student'
+require_relative 'teacher'
+
 module Actions
   def list_all_books
     @books.each { |book| puts "Title: '#{book.title}', Author: #{book.author}" }
