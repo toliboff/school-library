@@ -85,7 +85,8 @@ module Actions
     book = @books[selected_book]
 
     @persons.each_with_index do |person, index|
-      puts "#{index}) [#{person.class.name.split('::').last}] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}"
+      person_class = person.class.name.split('::').last
+      puts "#{index}) [#{person_class}] Name: '#{person.name}', ID: #{person.id} , Age: #{person.age}"
     end
     selected_person = gets.chomp.to_i
     person = @persons[selected_person]
