@@ -54,7 +54,7 @@ end
 
 def main
   puts 'Welcome to School Library App!'
-  
+
   library = Library.new
   library.start_app
 end
