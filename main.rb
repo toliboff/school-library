@@ -54,6 +54,7 @@ class Library
 
   def save_data
     File.open('books.json', 'w') { |f| f.write JSON.generate(@books) }
+    File.open('persons.json', 'w') { |f| f.write JSON.generate(@persons) }
   end
   
   def get_books
@@ -68,6 +69,22 @@ class Library
       []
     end
   end
+
+  def get_persons
+    file = 'persons.json'
+  
+    if File.exist? file
+        data = JSON.parse(File.read(file), create_additions: true)
+        data.each do |person|
+          person['json_class']=="Student" ? @persons.push(Student.new(person['age'], person['name'], person['parent_permission'])) :
+                                            @persons.push(Teacher.new(person['age'], person['name'], person['specialization']))
+          
+        end
+      else
+      []
+    end
+  end
+
 end
 
 
@@ -78,6 +95,7 @@ def main
 
   library = Library.new
   library.get_books
+  library.get_persons
   library.start_app
 end
 
