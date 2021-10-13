@@ -32,6 +32,7 @@ class Library
       list_rentals
     when 7
       puts 'Thank you for using this app!'
+      save_data
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
@@ -50,13 +51,35 @@ class Library
     puts 'Please choose an option by entering a number: ', options
     gets.chomp.to_i
   end
+
+  def save_data
+    File.open('books.json', 'w') { |f| f.write JSON.generate(@books) }
+  end
+  
+  def get_books
+    file = 'books.json'
+  
+    if File.exist? file
+        data = JSON.parse(File.read(file), create_additions: true)
+        data.each do |book|
+          @books.push(Book.new(book['title'], book['author']))
+        end
+      else
+      []
+    end
+  end
 end
 
+
+
 def main
+ 
   puts 'Welcome to School Library App!'
 
   library = Library.new
+  library.get_books
   library.start_app
 end
+
 
 main
